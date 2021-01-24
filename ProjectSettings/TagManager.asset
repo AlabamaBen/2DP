@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - MovingPlatform
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Platforms
+  - Water
+  - UI
+  - Background
+  - Deadzone
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background_01
+    uniqueID: 707004385
+    locked: 0
+  - name: Background_02
+    uniqueID: 60348871
+    locked: 0
+  - name: Background_03
+    uniqueID: 3056332315
+    locked: 0
+  - name: Background_04
+    uniqueID: 4219222513
+    locked: 0
+  - name: Platforms
+    uniqueID: 2846453079
+    locked: 0
+  - name: Player
+    uniqueID: 3163447877
+    locked: 0
+  - name: Frontground
+    uniqueID: 1977654901
+    locked: 0
