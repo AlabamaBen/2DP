@@ -116,6 +116,8 @@ public class PlayerMovement : MonoBehaviour
         LastUpdateVelocity = Vector2.zero;
 
         StartPosition = transform.position;
+
+        playeranimation.Animation_Spawn();
     }
 
     void FixedUpdate()
