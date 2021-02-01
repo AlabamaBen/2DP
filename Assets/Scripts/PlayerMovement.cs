@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
-        transform.position = StartPosition;
+        transform.position = playerManager.Current_Checkpoint;
         rigidBody.velocity = Vector2.zero;
         isOnGround = true;
         isWalled = false;

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Dash
+    Dash,
+    Checkpoint
 }
 
 public class ItemBehviour : MonoBehaviour
@@ -15,6 +16,8 @@ public class ItemBehviour : MonoBehaviour
     public ParticleSystem IdleParticles;
     public ParticleSystem EndParticles;
     public AudioClip EndSound;
+
+    public SpriteRenderer spriteRenderer; 
 
     AudioSource audioSource;
 
@@ -37,7 +40,7 @@ public class ItemBehviour : MonoBehaviour
             audioSource.Play();
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<Collider2D>());
-            GetComponent<SpriteRenderer>().enabled = false; 
+            spriteRenderer.enabled = false; 
             Invoke("End", 3f);
         }
 
