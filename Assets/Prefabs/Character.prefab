@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1907738674874758414}
   - component: {fileID: 1907738674874758413}
   - component: {fileID: 1907738674874758412}
-  - component: {fileID: 1907738674874758419}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -119,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawDebugRaycasts: 1
   playeranimation: {fileID: 1907738675637482911}
-  playerManager: {fileID: 1907738674874758419}
+  playerManager: {fileID: 0}
   speed: 8
   speedair: 6.5
   coyoteDuration: 0.05
@@ -177,19 +176,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1da1f4b337ca0141911d90870785035, type: 3}
   - {fileID: 8300000, guid: 45e5c02197746a8458358fa6ed938bf3, type: 3}
   IsWallSliding: 0
---- !u!114 &1907738674874758419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907738674874758418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966a86a1f521ec04a8e331ea3f8911a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HaveDash: 0
 --- !u!1 &1907738675111153701
 GameObject:
   m_ObjectHideFlags: 0

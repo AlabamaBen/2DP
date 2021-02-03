@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 StartPosition; 
 
     float originalXScale;                   //Original scale on X axis
+    float originalGravityScale;                   
     int direction = 1;                      //Direction player is facing
     int dashDirection = 1; 
 
@@ -70,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
     Vector2 LastUpdateVelocity;
 
     const float smallAmount = .05f;			//A small amount used for hanging position
-
 
     public float XSpeed
     {
@@ -94,10 +94,14 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.parent = null;
 
+        playerManager = PlayerManager.Instance;
+
         //Get a reference to the required components
         input = GetComponent<PlayerInput>();
         rigidBody = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
+
+        originalGravityScale = rigidBody.gravityScale; 
 
         //Record the original x scale of the player
         originalXScale = transform.localScale.x;

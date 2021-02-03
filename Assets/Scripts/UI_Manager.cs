@@ -9,24 +9,19 @@ public class UI_Manager : MonoBehaviour
     public GameObject StartCanvas;
     public GameObject DashCanvas;
 
-    public CinemachineVirtualCamera CVcamera; 
-
     private bool GameStarted;
     private bool DashShown;
 
-
-
-    public GameObject CharacterPrefab;
-    public Transform CharacterSpawn;
-
+    public LevelManager levelManager; 
     private PlayerManager playerManager; 
+
     // Start is called before the first frame update
     void Start()
     {
         GameStarted = false;
         DashShown = false; 
         DashCanvas.SetActive(false);
-        CVcamera.Follow = CharacterSpawn;
+        playerManager = PlayerManager.Instance;
     }
 
     // Update is called once per frame
@@ -34,7 +29,9 @@ public class UI_Manager : MonoBehaviour
     {
         if(Input.GetButtonDown("Jump") && !GameStarted)
         {
-            Start_Game();
+            levelManager.Start_Game();
+            StartCanvas.SetActive(false);
+            GameStarted = true;
         }
         if(playerManager)
         {
@@ -44,16 +41,6 @@ public class UI_Manager : MonoBehaviour
             }
         }
     }
-
-    void Start_Game()
-    {
-        StartCanvas.SetActive(false);
-        GameStarted = true;
-        GameObject character = Instantiate(CharacterPrefab, CharacterSpawn, true);
-        CVcamera.Follow = character.transform;
-        playerManager = character.GetComponent<PlayerManager>();
-    }
-
     void UnlockDash()
     {
         DashCanvas.SetActive(true);

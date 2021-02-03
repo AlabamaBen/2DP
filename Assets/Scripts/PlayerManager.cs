@@ -2,21 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
-{
 
+public  class PlayerManager : MonoBehaviour
+{
+    static PlayerManager mPlayerManager;
+
+    public static PlayerManager Instance
+    {
+        get
+        {
+            if (mPlayerManager == null)
+            {
+                GameObject go = new GameObject();
+                mPlayerManager = go.AddComponent<PlayerManager>();
+                DontDestroyOnLoad(go);
+                DontDestroyOnLoad(mPlayerManager);
+            }
+            return mPlayerManager;
+        }
+    }
 
     public bool HaveDash = false; 
 
-    public Vector3 Current_Checkpoint; 
+    public Vector3 Current_Checkpoint;
 
-    // Start is called before the first frame update
+    public GameObject character; 
+
     void Start()
     {
-        Update_Checkpoint(this.transform.position); 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -30,7 +45,7 @@ public class PlayerManager : MonoBehaviour
                 HaveDash = true; 
                 break;
             case ItemType.Checkpoint:
-                Update_Checkpoint(this.transform.position);
+                Update_Checkpoint(character.transform.position);
                 break;
             default:
                 break;

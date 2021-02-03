@@ -21,10 +21,13 @@ public class ItemBehviour : MonoBehaviour
 
     AudioSource audioSource;
 
+    PlayerManager playerManager; 
+
     void Start()
     {
         IdleParticles.Play();
         audioSource = GetComponent<AudioSource>();
+        playerManager = PlayerManager.Instance;
     }
 
 
@@ -32,7 +35,7 @@ public class ItemBehviour : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerManager>().GetItem(itemType);
+            playerManager.GetItem(itemType);
             EndParticles.Play();
             IdleParticles.Clear();
             IdleParticles.Stop();
