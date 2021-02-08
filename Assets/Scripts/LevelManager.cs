@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     public CinemachineVirtualCamera CVcamera;
     public GameObject CharacterPrefab;
     public Transform CharacterSpawn;
+    public string LevelDescription;
+    public bool IsFirstLevel;
 
     private PlayerManager playerManager; 
 

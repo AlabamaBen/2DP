@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class UI_Manager : MonoBehaviour
 {
@@ -13,19 +14,27 @@ public class UI_Manager : MonoBehaviour
     private bool DashShown;
 
     public LevelManager levelManager; 
-    private PlayerManager playerManager; 
+    private PlayerManager playerManager;
+
+    public Text LevelDescriptor;
+    public Text TitleText;
+
 
     // Start is called before the first frame update
     void Start()
     {
         GameStarted = false;
-        DashShown = false; 
-        DashCanvas.SetActive(false);
         playerManager = PlayerManager.Instance;
-    }
+        DashShown = playerManager.HaveDash; 
+        DashCanvas.SetActive(false);
 
-    // Update is called once per frame
-    void Update()
+        StartCanvas.SetActive(true);
+        TitleText.text = levelManager.IsFirstLevel ? "GAME TITLE" : "";
+        LevelDescriptor.text = levelManager.LevelDescription;
+}
+
+// Update is called once per frame
+void Update()
     {
         if(Input.GetButtonDown("Jump") && !GameStarted)
         {
