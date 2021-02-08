@@ -14,6 +14,9 @@ public class PlatformBehaviour : MonoBehaviour
     Transform current_target;
     Rigidbody2D rb;
 
+    public AnimationCurve animationCurve; 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +28,9 @@ public class PlatformBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = -(transform.position - current_target.position).normalized * Speed; //Vector3.Lerp(transform.position, current_target.position, 0.01f);
+
+        float distanceratio = (transform.position - current_target.position).magnitude / (current_target.position - (current_target == target01_pos ? target02_pos : target01_pos).position).magnitude  ; 
+        rb.velocity = -(transform.position - current_target.position).normalized * Speed * animationCurve.Evaluate(distanceratio);
         if ((transform.position - current_target.position).magnitude < 0.1f )
         {
             current_target = current_target== target01_pos ? target02_pos : target01_pos;
