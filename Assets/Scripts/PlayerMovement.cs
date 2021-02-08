@@ -166,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D rightCheck = Raycast(new Vector2(bodyCollider.size.x/2, -bodyCollider.size.y /2 - 0.2f), Vector2.down, groundDistance);
 
         RaycastHit2D DownWallCheck = Raycast(new Vector2(bodyCollider.size.x / 2 * direction, -bodyCollider.size.y / 2 - 0.2f), Vector2.right * direction, groundDistance);
+        RaycastHit2D UpWallCheck = Raycast(new Vector2(bodyCollider.size.x / 2 * direction, bodyCollider.size.y / 2 - 0.2f), Vector2.right * direction, groundDistance);
 
         //If either ray hit the ground, the player is on the ground
         if (leftCheck || rightCheck)
@@ -180,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         }
         LastUpdateVelocity = rigidBody.velocity;
 
-        if (DownWallCheck)
+        if (DownWallCheck||UpWallCheck)
             isWalled = true;
 
         if(playerManager.HaveDash && isOnGround && !canDash &&  dashTime + dashLenght + dashCooldown < Time.time)
