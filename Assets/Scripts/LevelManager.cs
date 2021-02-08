@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public GameObject CharacterPrefab;
     public Transform CharacterSpawn;
     public string LevelDescription;
+    public string NextSceneName;
     public bool IsFirstLevel;
 
     private PlayerManager playerManager; 
@@ -19,6 +20,7 @@ public class LevelManager : MonoBehaviour
     {
         CVcamera.Follow = CharacterSpawn;
         playerManager = PlayerManager.Instance;
+        playerManager.levelManager = this;
     }
 
     public void Start_Game()

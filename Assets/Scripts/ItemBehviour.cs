@@ -5,7 +5,8 @@ using UnityEngine;
 public enum ItemType
 {
     Dash,
-    Checkpoint
+    Checkpoint,
+    LevelEnd
 }
 
 public class ItemBehviour : MonoBehaviour

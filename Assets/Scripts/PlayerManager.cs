@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public  class PlayerManager : MonoBehaviour
 {
@@ -26,7 +26,9 @@ public  class PlayerManager : MonoBehaviour
 
     public Vector3 Current_Checkpoint;
 
-    public GameObject character; 
+    public GameObject character;
+
+    public LevelManager levelManager;
 
     void Start()
     {
@@ -46,6 +48,9 @@ public  class PlayerManager : MonoBehaviour
                 break;
             case ItemType.Checkpoint:
                 Update_Checkpoint(character.transform.position);
+                break;
+            case ItemType.LevelEnd:
+                SceneManager.LoadScene(levelManager.NextSceneName);
                 break;
             default:
                 break;
