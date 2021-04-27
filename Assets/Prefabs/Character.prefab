@@ -119,6 +119,7 @@ MonoBehaviour:
   drawDebugRaycasts: 1
   playeranimation: {fileID: 1907738675637482911}
   playerManager: {fileID: 0}
+  playerSprite: {fileID: 1907738675637482904}
   speed: 8
   speedair: 6.5
   coyoteDuration: 0.05

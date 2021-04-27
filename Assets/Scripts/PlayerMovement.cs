@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool drawDebugRaycasts = true;   //Should the environment checks be visualized
     public PlayerAnimation playeranimation;
-    public PlayerManager playerManager; 
+    public PlayerManager playerManager;
+    public SpriteRenderer playerSprite; 
 
     [Header("Movement Properties")]
     public float speed = 8f;                //Player speed
@@ -63,7 +64,10 @@ public class PlayerMovement : MonoBehaviour
     float originalXScale;                   //Original scale on X axis
     float originalGravityScale;                   
     int direction = 1;                      //Direction player is facing
-    int dashDirection = 1; 
+    int dashDirection = 1;
+    bool isDead;
+    bool isInvincible; 
+    float initGravityScale; 
 
     Vector2 colliderStandSize;              //Size of the standing collider
     Vector2 colliderStandOffset;            //Offset of the standing collider
@@ -122,6 +126,12 @@ public class PlayerMovement : MonoBehaviour
         StartPosition = transform.position;
 
         playeranimation.Animation_Spawn();
+
+        isDead = false;
+
+        initGravityScale = rigidBody.gravityScale;
+
+        isInvincible = false; 
     }
 
     void FixedUpdate()
@@ -139,23 +149,51 @@ public class PlayerMovement : MonoBehaviour
     {
         if(bodyCollider.IsTouchingLayers(DeadzoneLayer))
         {
-            Die();
+            if(!isDead && !isInvincible)
+            {
+                isDead = true;
+                Die();  
+            }
         }
     }
 
     void Die()
     {
-        transform.position = playerManager.Current_Checkpoint;
         rigidBody.velocity = Vector2.zero;
         isOnGround = true;
         isWalled = false;
         isJumping = false;
         move_block = false;
+        playerSprite.enabled = false; 
         playeranimation.Animation_Spawn();
+        rigidBody.gravityScale = 0f; 
+        Invoke("Respawn", 2f);
+        Debug.Log("DIE");
+        isInvincible = true; 
+    }
+
+    void Respawn()
+    {
+        Debug.Log("RESPAWN");
+        transform.position = playerManager.Current_Checkpoint;
+        playerSprite.enabled = true;
+        playeranimation.Animation_Spawn();
+        rigidBody.velocity = Vector2.zero;
+        isDead = false;
+        rigidBody.gravityScale = initGravityScale;
+        Invoke("ResetInvincible", 0.5f);
+    }
+
+    void ResetInvincible()
+    {
+        isInvincible = false; 
     }
 
     void PhysicsCheck()
     {
+        if (isDead)
+            return;
+
         //Start by assuming the player isn't on the ground and the head isn't blocked
         bool lastIsOnGround = isOnGround;
         isOnGround = false;
@@ -193,6 +231,9 @@ public class PlayerMovement : MonoBehaviour
 
     void GroundMovement()
     {
+        if (isDead)
+            return;
+
         if(playerManager.HaveDash && input.dashPressed && !isDashing && canDash)
         {
             isDashing = true;
@@ -206,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         if (dashTime < Time.time && isDashing)
         {
             isDashing = false;
-            rigidBody.gravityScale = 3f;
+            rigidBody.gravityScale = initGravityScale;
         }
 
         if (isDashing)
@@ -264,6 +305,9 @@ public class PlayerMovement : MonoBehaviour
 
     void MidAirMovement()
     {
+        if (isDead)
+            return;
+
         //If the jump key is pressed AND the player isn't already jumping AND EITHER
         //the player is on the ground or within the coyote time window...
         if (input.jumpPressed && !isJumping && (isOnGround || coyoteTime > Time.time ))
@@ -320,6 +364,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FlipCharacterDirection()
     {
+        if (isDead)
+            return;
+
         //Turn the character by flipping the direction
         direction *= -1;
 

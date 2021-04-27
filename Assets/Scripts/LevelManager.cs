@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     public void Start_Game()
     {
         GameObject character = Instantiate(CharacterPrefab, CharacterSpawn, true);
+        character.transform.position = CharacterSpawn.position;
         CVcamera.Follow = character.transform;
         playerManager.character = character;
         playerManager.Update_Checkpoint(character.transform.position);
