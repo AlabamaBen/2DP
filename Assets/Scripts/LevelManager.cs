@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
         CVcamera.Follow = CharacterSpawn;
         playerManager = PlayerManager.Instance;
         playerManager.levelManager = this;
+        CinemachineShake.Instance.FadeIn();
     }
 
     public void Start_Game()

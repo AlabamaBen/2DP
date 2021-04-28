@@ -50,7 +50,8 @@ public  class PlayerManager : MonoBehaviour
                 Update_Checkpoint(character.transform.position);
                 break;
             case ItemType.LevelEnd:
-                SceneManager.LoadScene(levelManager.NextSceneName);
+                CinemachineShake.Instance.FadeOut();
+                Invoke("LoadNextLevel", 5f);
                 break;
             default:
                 break;
@@ -60,5 +61,10 @@ public  class PlayerManager : MonoBehaviour
     public void Update_Checkpoint(Vector3 _position)
     {
         Current_Checkpoint = _position;
+    }
+
+    private void LoadNextLevel()
+    {
+        SceneManager.LoadScene(levelManager.NextSceneName);
     }
 }

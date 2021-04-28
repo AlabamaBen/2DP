@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
-    public Color Dash_Color; 
+    public Color Dash_Color;
 
 
     // Start is called before the first frame update
@@ -63,7 +64,6 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
 
         //Update the Animator with the appropriate values 
         anim.SetFloat(fallParamID, rigidBody.velocity.y);
@@ -122,6 +122,7 @@ public class PlayerAnimation : MonoBehaviour
         land_animation.Play();
         jumpparticles.Play();
         playerSounds.SFX_Land();
+        CinemachineShake.Instance.ShakeCamera(2f, 0.1f);
     }
 
     public void Animation_Step()
