@@ -30,6 +30,8 @@ public  class PlayerManager : MonoBehaviour
 
     public LevelManager levelManager;
 
+    public bool GameEnd = false; 
+
     void Start()
     {
     }
@@ -65,6 +67,12 @@ public  class PlayerManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
+        if(levelManager.NextSceneName == "END")
+        {
+            GameEnd = true;
+            return;
+        }
+
         SceneManager.LoadScene(levelManager.NextSceneName);
     }
 }

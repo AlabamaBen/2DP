@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour
         playerManager = PlayerManager.Instance;
         playerManager.levelManager = this;
         CinemachineShake.Instance.FadeIn();
+        Cursor.visible = false;
     }
 
     public void Start_Game()

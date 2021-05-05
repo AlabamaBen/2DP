@@ -35,6 +35,15 @@ public class PlayerAnimation : MonoBehaviour
 
     public Color Dash_Color;
 
+    public float Land_Shake_Intensity = 1f; 
+    public float Land_Shake_Time = 0.1f;
+
+    public float Dash_Shake_Intensity = 1f;
+    public float Dash_Shake_Time = 0.1f;
+
+    public float Spawn_Shake_Intensity = 1f;
+    public float Spawn_Shake_Time = 0.1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -122,7 +131,7 @@ public class PlayerAnimation : MonoBehaviour
         land_animation.Play();
         jumpparticles.Play();
         playerSounds.SFX_Land();
-        CinemachineShake.Instance.ShakeCamera(2f, 0.1f);
+        CinemachineShake.Instance.ShakeCamera(Land_Shake_Intensity, Land_Shake_Time);
     }
 
     public void Animation_Step()
@@ -136,6 +145,7 @@ public class PlayerAnimation : MonoBehaviour
         dashtrailparticles.Play();
         playerSounds.SFX_Dash();
         spriteRenderer.color = Dash_Color;
+        CinemachineShake.Instance.ShakeCamera(Dash_Shake_Intensity, Dash_Shake_Time);
     }
 
     public void Animation_Spawn()
@@ -143,6 +153,14 @@ public class PlayerAnimation : MonoBehaviour
         spawnparticles.Play();
         playerSounds.SFX_RecoverDash();
     }
+
+    public void Animation_Die()
+    {
+        spawnparticles.Play();
+        playerSounds.SFX_RecoverDash();
+        CinemachineShake.Instance.ShakeCamera(Spawn_Shake_Intensity, Spawn_Shake_Time);
+    }
+
 
 
     public void Animation_Dash_Recover()

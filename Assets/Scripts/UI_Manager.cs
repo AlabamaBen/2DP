@@ -18,6 +18,7 @@ public class UI_Manager : MonoBehaviour
 
     public Text LevelDescriptor;
     public Text TitleText;
+    public Text EscapeText;
 
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class UI_Manager : MonoBehaviour
         DashCanvas.SetActive(false);
 
         StartCanvas.SetActive(true);
-        TitleText.text = levelManager.IsFirstLevel ? "GAME TITLE" : "";
+        TitleText.text = levelManager.IsFirstLevel ? "HEDERA" : "";
         LevelDescriptor.text = levelManager.LevelDescription;
 }
 
@@ -42,12 +43,20 @@ void Update()
             StartCanvas.SetActive(false);
             GameStarted = true;
         }
-        if(playerManager)
+        if (Input.GetButtonDown("Escape"))
+        {
+            Application.Quit();
+        }
+        if (playerManager)
         {
             if(playerManager.HaveDash && !DashShown)
             {
                 UnlockDash();
             }
+        }
+        if(playerManager.GameEnd)
+        {
+            EscapeText.text = "PRESS ESCAPE TO EXIT";
         }
     }
     void UnlockDash()

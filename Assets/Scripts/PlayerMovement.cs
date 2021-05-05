@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         move_block = false;
         playerSprite.enabled = false; 
-        playeranimation.Animation_Spawn();
+        playeranimation.Animation_Die();
         rigidBody.gravityScale = 0f; 
         Invoke("Respawn", 2f);
         Debug.Log("DIE");
