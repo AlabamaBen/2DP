@@ -71045,7 +71045,7 @@ MonoBehaviour:
   CVcamera: {fileID: 8766586623243369822}
   CharacterPrefab: {fileID: 1907738674874758418, guid: 0447eaf985ca551419fadd06d8da5300, type: 3}
   CharacterSpawn: {fileID: 8766586624157289486}
-  LevelDescription: WORLD 1 - LEVEL 2
+  LevelDescription: WORLD 1 - LEVEL 3-3
   NextSceneName: END
   IsFirstLevel: 0
 --- !u!4 &8766586623748123256
